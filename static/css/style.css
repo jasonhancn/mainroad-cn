@@ -947,6 +947,7 @@ textarea {
 .widget-social__link {
 	display: block;
 	margin: 0 0 8px 0;
+	font-weight: 500;
 }
 
 .widget-social__link-icon {
