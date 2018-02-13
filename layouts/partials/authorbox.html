@@ -1,0 +1,27 @@
+{{- if .Site.Params.authorbox }}
+<div class="authorbox clearfix">
+	{{- if and (not .Site.Author.avatar) (not .Site.Author.name) (not .Site.Author.bio) }}
+	<p class="authorbox__warning"><strong>WARNING:</strong> 尚未设置作者信息.</p>
+	{{- end }}
+	{{- with .Site.Author.avatar }}
+	<figure class="authorbox__avatar">
+		<img alt="{{ $.Site.Author.name }} avatar" src="{{ $.Site.Author.avatar | relURL }}" class="avatar" height="90" width="90">
+	</figure>
+	{{- end }}
+	{{- with .Site.Author.name }}
+	<div class="authorbox__header">
+		<span class="authorbox__name">作者 {{ . }}</span>
+	</div>
+	{{- end }}
+	{{- with .Site.Author.bio }}
+	<div class="authorbox__description">
+		{{ . }}
+	</div>
+	{{- end }}
+	{{- with .Site.Author.copyright }}
+	<div class="authorbox__description">
+		<b>{{ . }}</b>
+	</div>
+	{{- end }}
+</div>
+{{- end }}
