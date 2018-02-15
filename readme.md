@@ -34,6 +34,7 @@ hasCJKLanguage = true # 超级重要中文网站一定要开！！！
     postSections = ["post"] # 哪些分区显示在主页上
     #postSections = ["blog", "news"] # 多分区的情况
     dateformat = "2006-01-02" # 显示日期的格式
+    search_host = "www.example.com" # 自定义搜索的域名
 
 [Params.widgets]
     search = true # 是否显示“搜索”框
