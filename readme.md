@@ -2,13 +2,14 @@
 
 mainroad-cn 是一个简单的响应式[Hugo](https://gohugo.io)主题，基于[Mainroad](https://github.com/Vimux/Mainroad)（其基于[MH Themes](https://www.mhthemes.com/)的[MH Magazine](https://wordpress.org/themes/mh-magazine-lite/) - WordPress主题）
 
-具体的修改包括了更改默认字体，调整字号以适合中文显示（主要做的就是放大和调细字重来保证中文字看得清楚），把默认的Google自定义搜索换成了百度的，社交媒体换成了Github，Linkedin，新浪微博和知乎。
+具体的修改包括了更改默认字体，调整字号以适合中文显示（主要做的就是放大和调细字重来保证中文字看得清楚），把默认的Google自定义搜索换成了百度的，社交媒体换成了Github，Linkedin，新浪微博和知乎。评论系统选用了[gitalk](https://gitalk.github.io) 1.2.2，在其基础上添加了一个md5库来解决[长链接问题](https://github.com/gitalk/gitalk/issues/102)。
 
 实际效果可以参考[我的博客](https://www.noobear.com)。
 
 参考配置(yaml同理)：
 
 ~~~toml
+
 baseurl = "/"
 title = "站名"
 languageCode = "zh-CN"
@@ -19,7 +20,7 @@ hasCJKLanguage = true # 超级重要中文网站一定要开！！！
 [Author] # 作者
     name = "张三"
     bio = "你好，我是张三。"
-	copyright = "转载请著名出处"
+    copyright = "转载请著名出处"
     avatar = "img/avatar.png"
 
 [Params]
@@ -43,10 +44,17 @@ hasCJKLanguage = true # 超级重要中文网站一定要开！！！
     tags_counter = false # 标签的出现频率统计
 
     # 当被设置的时候会显示“社交”框
-	social_github = "username" # Github github.com/username
+    social_github = "username" # Github github.com/username
     social_linkedin = "username" # linkdin linkedin.com/in/username
     social_weibo = "username" # weibo.com/你的个性域名
     social_zhihu = "username" # zhihu.com/people/你的个性域名
     social_email = "example@example.com"
+
+[Params.gitalk]
+    clintID = "your_client_id"
+    clientSecret = "your_client_secret"
+    repo = "your_repo"
+    owner = "your_github_id"
+    admin = "your_github_id"
 
 ~~~
