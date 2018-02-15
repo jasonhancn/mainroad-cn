@@ -19,7 +19,7 @@ var gitalk = new Gitalk({
   repo: "{{ .Site.Params.gitalk.repo }}",
   owner: "{{ .Site.Params.gitalk.owner }}",
   admin: ["{{ .Site.Params.gitalk.admin }}"],
-  id: md5(location.href)
+  id: md5(encodeURI(location.href))
 })
 gitalk.render('gitalk-container')
 </script>
