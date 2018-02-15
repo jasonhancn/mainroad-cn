@@ -11,7 +11,7 @@
 		navClass: "menu--collapse",
 	});
 </script>
-{{- if not (isset .Params "disable_comments") }}
+{{- if and (or (not (isset .Params "disable_comments")) (not (isset .Site.Params.gitalk "clientID"))) .IsPage }}
 <script>
 var gitalk = new Gitalk({
   clientID: "{{ .Site.Params.gitalk.clientID }}",

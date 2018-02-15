@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="{{ "css/style.css" | relURL }}" type="text/css" media="all" />
 <script type="text/javascript" src="{{ "js/scripts.js" | relURL }}"></script>
 <link rel="shortcut icon" href="{{ "favicon.ico" | relURL }}">
-{{- if not (isset .Params "disable_comments") }}
+{{- if and (or (not (isset .Params "disable_comments")) (not (isset .Site.Params.gitalk "clientID"))) .IsPage }}
 <link rel="stylesheet" href="{{ "css/gitalk.min.css" | relURL }}">
 <script src="{{ "js/gitalk.min.js" | relURL }}"></script>
 <script src="{{ "js/md5.min.js" | relURL }}"></script>
