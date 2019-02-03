@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html class="no-js" lang="{{ .Site.LanguageCode | default "en-us" }}">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>{{ block "title" . }}{{ if not .IsHome }}{{ .Title }} - {{ end }}{{ .Site.Title }}{{ end }}</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{else}}{{ .Params.Description }}{{end}}">
+	{{ .Hugo.Generator }}
+	{{ if .Site.Params.opengraph }}{{ template "_internal/opengraph.html" . }}{{ end }}
+	{{ with .OutputFormats.Get "rss" -}}
+	{{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
+	{{ end -}}
+	<link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+	{{ range .Site.Params.customCSS -}}
+	<link rel="stylesheet" href="{{ . | relURL }}">
+	{{- end }}
+	<link rel="shortcut icon" href="{{ "favicon.ico" | relURL }}">
+	<link rel="stylesheet" href="{{ "css/gitalk.css" | relURL }}">
+	<script src="{{ "js/gitalk.min.js" | relURL }}"></script>
+	<script src="{{ "js/md5.min.js" | relURL }}"></script>
+</head>
+<body class="body">
+	<div class="container container--outer">
+		{{ partial "header" . }}
+		<div class="wrapper flex">
+			<div class="primary">
+			{{ block "main" . }}
+				{{ with .Content }}
+				<div class="content main__content clearfix">
+					{{ . }}
+				</div>
+				{{ end }}
+			{{ end }}
+			</div>
+			{{ partial "sidebar.html" . }}
+		</div>
+		{{ partial "footer" . }}
+	</div>
+<script async defer src="{{ "js/menu.js" | relURL }}"></script>
+{{- partial "mathjax.html" . -}}
+</body>
+{{- if and (or (not (isset .Params "disable_comments")) (not (isset .Site.Params.gitalk "clientID"))) .IsPage }}
+<script>
+var gitalk = new Gitalk({
+  clientID: "{{ .Site.Params.gitalk.clientID }}",
+  clientSecret: "{{ .Site.Params.gitalk.clientSecret }}",
+  repo: "{{ .Site.Params.gitalk.repo }}",
+  owner: "{{ .Site.Params.gitalk.owner }}",
+  admin: ["{{ .Site.Params.gitalk.admin }}"],
+  id: md5(encodeURI(location.href))
+})
+gitalk.render('gitalk-container')
+</script>
+{{ end }}
+</html>

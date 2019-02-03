@@ -1,13 +1,9 @@
-{{- if .Site.Params.widgets.search }}
 <div class="widget-search widget">
-	<form class="widget-search__form" role="search" method="get" action="https://www.baidu.com/s" target="_blank">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
 		<label>
-			<span class="screen-reader-text">搜索:</span>
-			<input class="widget-search__field" type="text" placeholder="百度自定义搜索" value="" name="wd">
+			<input class="widget-search__field" type="search" placeholder="{{ T "search_placeholder" }}" value="" name="q" aria-label="{{ T "search_placeholder" }}">
 		</label>
-		<input class="widget-search__submit" type="submit" value="搜索">
-		<input type="hidden" name="ct" value="noobear" />
-		<input type="hidden" name="si" value="{{ .Site.Params.search_host }}" />
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="{{ .Site.BaseURL }}" />
 	</form>
 </div>
-{{- end }}

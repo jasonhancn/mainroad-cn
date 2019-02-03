@@ -1,33 +1,11 @@
-<!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode | default "zh-cn" }}">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ .Title }}</title>
-{{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
-{{ .Hugo.Generator }}
-{{ if .Site.Params.opengraph }}{{ template "_internal/opengraph.html" . }}{{ end }}
-{{ if .RSSLink }}<link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }} Feed" href="{{ .RSSLink }}">{{ end }}
-<link rel="stylesheet" href="{{ "css/style.css" | relURL }}" type="text/css" media="all" />
-<script type="text/javascript" src="{{ "js/scripts.js" | relURL }}"></script>
-<link rel="shortcut icon" href="{{ "favicon.ico" | relURL }}">
-{{- if and (or (not (isset .Params "disable_comments")) (not (isset .Site.Params.gitalk "clientID"))) .IsPage }}
-<link rel="stylesheet" href="{{ "css/gitalk.min.css" | relURL }}">
-<script src="{{ "js/gitalk.min.js" | relURL }}"></script>
-<script src="{{ "js/md5.min.js" | relURL }}"></script>
-{{ end }}
-</head>
-<body class="body {{ if (.Site.Params.leftsidebar) or (.Params.leftsidebar) }}body-left-sidebar{{ else }}body-right-sidebar{{ end }} mobile" itemscope="itemscope" itemtype="http://schema.org/WebPage">
-	<div class="container container-outer">
-		<header class="header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
-			<div class="container container-inner clearfix">
-				<div class="logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
-					<a class="logo__link" href="{{ "" | relLangURL }}" title="{{ .Site.Title }}" rel="home">
-						<h1 class="logo__title">{{ .Site.Title }}</h1>
-						{{ with .Site.Params.subtitle }}<h2 class="logo__tagline">{{ . }}</h2>{{ end }}
-					</a>
-				</div>
-			</div>
-			{{ partial "menu.html" . }}
-		</header>
-		<div class="wrapper clearfix">
+<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="{{ "" | relLangURL }}" title="{{ .Site.Title }}" rel="home">
+				<div class="logo__title">{{ .Site.Title }}</div>
+				{{ with .Site.Params.subtitle }}<div class="logo__tagline">{{ . }}</div>{{ end }}
+			</a>
+		</div>
+		{{ partial "menu.html" . }}
+	</div>
+</header>
