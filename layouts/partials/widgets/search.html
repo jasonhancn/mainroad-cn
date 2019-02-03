@@ -4,6 +4,6 @@
 			<input class="widget-search__field" type="search" placeholder="{{ T "search_placeholder" }}" value="" name="q" aria-label="{{ T "search_placeholder" }}">
 		</label>
 		<input class="widget-search__submit" type="submit" value="Search">
-		<input type="hidden" name="sitesearch" value="{{ .Site.BaseURL }}" />
+		<input type="hidden" name="sitesearch" value="{{ .Site.Params.searchUrl }}" />
 	</form>
 </div>
